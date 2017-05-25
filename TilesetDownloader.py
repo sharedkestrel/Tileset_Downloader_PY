@@ -48,9 +48,9 @@ def download_tileset(url):
         if not os.path.exists("images"):
             os.makedirs("images")
         with open(os.path.join('', 'images', filename), 'wb') as f:
-            print("Downloading %s...\n" % filename)
+            print("Downloading %s..." % filename)
             shutil.copyfileobj(r.raw, f)
-            print("Done.")
+            print("Done.\n")
         del r
 
 

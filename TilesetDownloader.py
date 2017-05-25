@@ -8,7 +8,10 @@ def request(url, streamtype):
     attempts = 0
     while attempts < 5:
         try:
-            print("Connecting to %s..." % url)
+            if streamtype:
+                print("Connecting to %s..." % url)
+            else:
+                print("Connecting to %s...\n" % url)
             r = requests.get(url, timeout = 30, stream = streamtype)
             return r
         except ConnectionError:
@@ -34,7 +37,6 @@ def find_tilesets(soup):
     images = []
     for tag in images_tag:
         images.append(tag.get("src"))
-        banana = tag.get("src")
     return images
 
 
@@ -48,6 +50,7 @@ def download_tileset(url):
         with open(os.path.join('', 'images', filename), 'wb') as f:
             print("Downloading %s...\n" % filename)
             shutil.copyfileobj(r.raw, f)
+            print("Done.")
         del r
 
 
